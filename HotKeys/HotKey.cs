@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotkeys
+namespace HotKeys
 {
-	public class Hotkey
+	public class HotKey
 	{
 		// Fields
 		private Modifiers modifiers;
 		private Key key;
 
 		// Constructors 
-		public Hotkey()
+		public HotKey()
 		{
 			IsEnabled = true;
 		}
 		
 		// Events
-		public event EventHandler<HotkeyFiredEventArgs> Fired;
+		public event EventHandler<HotKeyFiredEventArgs> Fired;
 
 		// Properties
 		public int? Id { get; internal set; }	
@@ -36,7 +36,7 @@ namespace Hotkeys
 				}
 				else
 				{
-					throw new HotkeyModificationException("Cannot change modifiers while registered.");
+					throw new HotKeyModificationException("Cannot change modifiers while registered.");
 				}
 			}
 		}
@@ -52,7 +52,7 @@ namespace Hotkeys
 				}
 				else
 				{
-					throw new HotkeyModificationException("Cannot change key while registered.");
+					throw new HotKeyModificationException("Cannot change key while registered.");
 				}
 			}
 		}
@@ -62,7 +62,7 @@ namespace Hotkeys
 		{
 			if (IsEnabled)
 			{
-				Fired?.Invoke(this, new HotkeyFiredEventArgs((int)Id, Modifiers, Key));
+				Fired?.Invoke(this, new HotKeyFiredEventArgs((int)Id, Modifiers, Key));
 			}
 		}
 

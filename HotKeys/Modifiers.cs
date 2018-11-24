@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Hotkeys
+namespace HotKeys
 {
 	/// <summary>
-	/// Represents viable modifiers for RegisterHotkey function in user32.dll
+	/// Represents viable modifiers for RegisterHotKey function in user32.dll
 	/// </summary>
 	[Flags]
 	public enum Modifiers
@@ -29,7 +29,7 @@ namespace Hotkeys
 		Win = 0x0008,
 		
 		/// <summary>
-		/// Changes the hotkey behavior so that the keyboard auto-repeat does not yield multiple hotkey notifications.
+		/// Changes the hotKey behavior so that the keyboard auto-repeat does not yield multiple hotKey notifications.
 		/// </summary>
 		NoRepeat = 0x4000,
 	}

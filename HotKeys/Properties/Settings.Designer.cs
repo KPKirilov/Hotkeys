@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hotkeys.Properties
+namespace HotKeys.Properties
 {
     
     

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotkeys
+namespace HotKeys
 {
-	public class HotkeyModificationException : Exception
+	public class HotKeyModificationException : Exception
 	{
-		public HotkeyModificationException()
+		public HotKeyModificationException()
 			: base()
 		{
 		}
 
-		public HotkeyModificationException(string message)
+		public HotKeyModificationException(string message)
 			: base(message)
 		{
 		}

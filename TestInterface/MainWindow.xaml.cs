@@ -1,4 +1,4 @@
-﻿using Hotkeys;
+﻿using HotKeys;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,27 +21,27 @@ namespace TestInterface
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private HotkeyHost host;
-		private Hotkey hk;
-		private Hotkey hk2;
+		private HotKeyHost host;
+		private HotKey hk;
+		private HotKey hk2;
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			host = new HotkeyHost();
-			hk = new Hotkey();
+			host = new HotKeyHost();
+			hk = new HotKey();
 			hk.Modifiers = Modifiers.Alt;
 			hk.Key = Key.OEM3;
-			host.RegisterHotkey(hk);
-			hk2 = new Hotkey();
+			host.RegisterHotKey(hk);
+			hk2 = new HotKey();
 			hk2.Key = Key.G;
-			host.RegisterHotkey(hk2);
+			host.RegisterHotKey(hk2);
 
 			hk.Fired += Hk_Fired;
 			hk2.Fired += Hk2_Fired; ;
 		}
 
-		private void Hk2_Fired(object sender, HotkeyFiredEventArgs e)
+		private void Hk2_Fired(object sender, HotKeyFiredEventArgs e)
 		{
 			this.Focus();
 			this.Activate();
@@ -52,7 +52,7 @@ namespace TestInterface
 
 		}
 
-		private void Hk_Fired(object sender, HotkeyFiredEventArgs e)
+		private void Hk_Fired(object sender, HotKeyFiredEventArgs e)
 		{
 			this.Focus();
 			this.Activate();

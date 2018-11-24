@@ -7,80 +7,80 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace Hotkeys
+namespace HotKeys
 {
-	public class HotkeyHost : IDisposable
+	public class HotKeyHost : IDisposable
 	{
 		// Constants
 		private const int WM_HOTKEY = 0x0312;
 
 		// Fields
-		private Window hotkeyDetector;
+		private Window hotKeyDetector;
 		private IntPtr handle;
 		private HwndSource source;
-		private HashSet<Hotkey> hotkeys;
+		private HashSet<HotKey> hotKeys;
 		private int firstFreeId;
 
 		// Constructors
-		public HotkeyHost()
+		public HotKeyHost()
 		{
-			this.hotkeyDetector = new Window();
-			this.handle = new WindowInteropHelper(this.hotkeyDetector).EnsureHandle();
+			this.hotKeyDetector = new Window();
+			this.handle = new WindowInteropHelper(this.hotKeyDetector).EnsureHandle();
 			this.source = HwndSource.FromHwnd(handle);
 			this.source.AddHook(HwndHook);
-			this.hotkeys = new HashSet<Hotkey>();
+			this.hotKeys = new HashSet<HotKey>();
 			this.firstFreeId = 0;
 		}
 
 		// Methods
 		[DllImport("user32.dll")]
-		private static extern bool RegisterHotkey(IntPtr hWnd, int id, int fsModifiers, int vlc);
+		private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
 
 		[DllImport("user32.dll")]
-		private static extern bool UnregisterHotkey(IntPtr hWnd, int id);
+		private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-		public void RegisterHotkey(Hotkey hotkey)
+		public void RegisterHotKey(HotKey hotKey)
 		{
-			if (hotkey.IsRegistered)
+			if (hotKey.IsRegistered)
 			{
-				throw new HotkeyRegistrationException("The given Hotkey is already registered.");
+				throw new HotKeyRegistrationException("The given HotKey is already registered.");
 			}
 
-			if (hotkey.Key == 0)
+			if (hotKey.Key == 0)
 			{
-				throw new HotkeyRegistrationException("Key is missing.");
+				throw new HotKeyRegistrationException("Key is missing.");
 			}
 
-			RegisterHotkey(this.handle, firstFreeId, (int)hotkey.Modifiers, (int)hotkey.Key);
-			hotkey.Id = firstFreeId;
-			hotkey.IsRegistered = true;
+			RegisterHotKey(this.handle, firstFreeId, (int)hotKey.Modifiers, (int)hotKey.Key);
+			hotKey.Id = firstFreeId;
+			hotKey.IsRegistered = true;
 			firstFreeId++;
-			this.hotkeys.Add(hotkey);
+			this.hotKeys.Add(hotKey);
 		}
 
-		public void UnregisterHotkey(Hotkey hotkey)
+		public void UnregisterHotKey(HotKey hotKey)
 		{
-			if (!hotkey.IsRegistered)
+			if (!hotKey.IsRegistered)
 			{ 
-				throw new HotkeyRegistrationException("The given Hotkey is not registered.");
+				throw new HotKeyRegistrationException("The given HotKey is not registered.");
 			}
 			
-			if (!this.hotkeys.Contains(hotkey))
+			if (!this.hotKeys.Contains(hotKey))
 			{
-				throw new HotkeyRegistrationException("The given Hotkey is not registered here.");
+				throw new HotKeyRegistrationException("The given HotKey is not registered here.");
 			}
 
-			UnregisterHotkey(handle, (int)hotkey.Id);
-			hotkey.Id = null;
-			hotkey.IsRegistered = false;
-			this.hotkeys.Remove(hotkey);
+			UnregisterHotKey(handle, (int)hotKey.Id);
+			hotKey.Id = null;
+			hotKey.IsRegistered = false;
+			this.hotKeys.Remove(hotKey);
 		}
 
-		public IReadOnlyCollection<Hotkey> Hotkeys
+		public IReadOnlyCollection<HotKey> HotKeys
 		{
 			get
 			{
-				return this.hotkeys as IReadOnlyCollection<Hotkey>;
+				return this.hotKeys as IReadOnlyCollection<HotKey>;
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace Hotkeys
 			if (msg == WM_HOTKEY)
 			{
 				var firedId = wParam.ToInt32();
-				foreach (var hk in hotkeys)
+				foreach (var hk in hotKeys)
 				{
 					if (hk.Id == firedId)
 					{
@@ -107,13 +107,13 @@ namespace Hotkeys
 
 		public void Dispose()
 		{
-			foreach (var hk in this.hotkeys)
+			foreach (var hk in this.hotKeys)
 			{
-				UnregisterHotkey(handle, (int)hk.Id);
+				UnregisterHotKey(handle, (int)hk.Id);
 			}
 
 			this.source.RemoveHook(HwndHook);
-			this.hotkeyDetector.Dispatcher.Invoke(() => hotkeyDetector.Close());
+			this.hotKeyDetector.Dispatcher.Invoke(() => hotKeyDetector.Close());
 		}
 	}
 }

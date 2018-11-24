@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotkeys
+namespace HotKeys
 {
-	public class HotkeyFiredEventArgs : EventArgs
+	public class HotKeyFiredEventArgs : EventArgs
 	{
-		public HotkeyFiredEventArgs()
+		public HotKeyFiredEventArgs()
 		{
 		}
 
-		public HotkeyFiredEventArgs(int hotkeyId, Modifiers modifiers, Key key)
+		public HotKeyFiredEventArgs(int hotKeyId, Modifiers modifiers, Key key)
 		{
-			HotkeyId = hotkeyId;
+			HotKeyId = hotKeyId;
 			Modifiers = Modifiers;
 			Key = key;
 		}
 
 		//public IntPtr DummyWindowHandle { get; set; }
-		public int HotkeyId { get; set; }
+		public int HotKeyId { get; set; }
 		public Modifiers Modifiers { get; set; }
 		public Key Key { get; set; }
 	}

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotkeys
+namespace HotKeys
 {
-	public class HotkeyRegistrationException : Exception
+	public class HotKeyRegistrationException : Exception
 	{
-		public HotkeyRegistrationException()
+		public HotKeyRegistrationException()
 			: base()
 		{
 		}
 
-		public HotkeyRegistrationException(string message)
+		public HotKeyRegistrationException(string message)
 			: base(message)
 		{				
 		}

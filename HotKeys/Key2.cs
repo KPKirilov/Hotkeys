@@ -4,7 +4,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace Hotkeys
+//namespace HotKeys
 //{
 //	enum Key2
 //	{

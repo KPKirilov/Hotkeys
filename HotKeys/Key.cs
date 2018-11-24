@@ -1,4 +1,4 @@
-﻿namespace Hotkeys
+﻿namespace HotKeys
 {
 	public enum Key
 	{
