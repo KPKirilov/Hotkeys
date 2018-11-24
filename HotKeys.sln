@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotKeys", "HotKeys\HotKeys.csproj", "{E7328E8E-8AF7-4189-8CF0-AFA1F8A74344}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInterface", "TestInterface\TestInterface.csproj", "{BBEAA4E9-E4E7-4A91-918E-E7CC70ED3395}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7328E8E-8AF7-4189-8CF0-AFA1F8A74344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7328E8E-8AF7-4189-8CF0-AFA1F8A74344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7328E8E-8AF7-4189-8CF0-AFA1F8A74344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7328E8E-8AF7-4189-8CF0-AFA1F8A74344}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBEAA4E9-E4E7-4A91-918E-E7CC70ED3395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBEAA4E9-E4E7-4A91-918E-E7CC70ED3395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBEAA4E9-E4E7-4A91-918E-E7CC70ED3395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBEAA4E9-E4E7-4A91-918E-E7CC70ED3395}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB695148-13E3-48EE-9F27-0D1B9DB27622}
+	EndGlobalSection
+EndGlobal
